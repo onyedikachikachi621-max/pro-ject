@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+ <!-- Menu Button -->
+ <br>
+<label>Book Title</label><br>
+<input type="text" id="bookTitle" required
+  style="width:100%;padding:10px;margin:8px 0 18px;border-radius:8px;border:1px solid #ccc;"><br>
+      <label>Category</label><br>
+      <select id="category" required 
+        style="width:100%;padding:10px;margin:8px 0 18px;border-radius:8px;border:1px solid #ccc;">
+        <option value="">Select category</option>
+        <option>Engineering</option>
+        <option>Medical</option>
+        <option>Law</option>
+        <option>Arts</option>
+        <option>Past Questions</option>
+        <option>Other</option>
+      </select><br>
+
+      <label>Price (₦)</label><br>
+      <input type="number" id="price" required 
+        style="width:100%;padding:10px;margin:8px 0 18px;border-radius:8px;border:1px solid #ccc;"><br>
+
+      <label>Condition</label><br>
+      <select id="condition" required 
+        style="width:100%;padding:10px;margin:8px 0 18px;border-radius:8px;border:1px solid #ccc;">
+        <option>New</option>
+        <option>Fairly Used</option>
+        <option>Used</option>
+      </select><br>
+
+      <label>Description</label><br>
+      <textarea id="description" rows="4" required
+        style="width:100%;padding:10px;margin:8px 0 20px;border-radius:8px;border:1px solid #ccc;"></textarea>
+
+      <button type="submit" class="btn" style="width:100%;">
+        <div class="whatsapp"></div>
+         <a href="https://wa.me/2349078878179?text=Hello%20COOU%20book%20store%2C%20I%27m%20interested%20in%20a%20textbook" 
+       class="btn wa-btn" target="_blank">
+       💬if there's any problem with selections Chat us on WhatsApp
+    </a>
+      </button>
+
+    </form>
+
+  </div>
+</section>
+```
+<head>
+<button class="menu-toggle" onclick="openMenu()">☰</button>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus shelf · COOU book store</title>
+  <!-- Fonts & styles (fully merged + textbook images added) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* MENU BUTTON */
+.menu-toggle {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 20px;
+}
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100%;
+  background: #1f1f1f;
+  padding: 40px 25px;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+  transition: 0.4s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu h2 {
+  color: #d4af37;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+}
+
+.side-link {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+
+.side-link:hover {
+  color: #d4af37;
+  padding-left: 5px;
+}
+
+.close-btn {
+  align-self: flex-end;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f6f3;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: #1f1f1f;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 300;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+  .hero {
+  height: 80vh;
+  background: #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.hero {
+  height: 80vh;
+
+  /* FUN GRADIENT BACKGROUND */
+  background: linear-gradient(
+    135deg,
+    #1f1f1f,
+    #2c3e50,
+    #4b6cb7,
+    #182848
+  );
+
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+/* Animated Gradient */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* BIG LOGO TEXT */
+.hero::before {
+  content: "CAMPUS SHELF";
+  position: absolute;
+  font-size: 110px;
+  font-weight: 800;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 8px;
+
+  /* GOLD FUN EFFECT */
+  background: linear-gradient(45deg, #ffd700, #ffb347, #ffcc70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0.15;
+}
+
+/* Foreground Content */
+.hero div {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h2 {
+  font-size: 48px;
+  font-family: 'Playfair Display', serif;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin: 20px 0;
+}
+    .hero h2 {
+      font-size: 48px;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 20px 0;
+      font-weight: 300;
+      font-size: 1.3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: #d4af37;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: 0.3s;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #b8962e;
+      transform: scale(1.02);
+    }
+
+    .products {
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .products h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 50px;
+      font-size: 36px;
+      color: #1f2a2f;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      background: #f0ece5;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+    }
+
+    .card .stock {
+      font-size: 0.9rem;
+      color: #2e7d32;
+      background: #e8f5e9;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 40px;
+      margin: 8px 0 10px;
+      font-weight: 400;
+    }
+
+    .price {
+      color: #d4af37;
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin: 8px 0 15px;
+    }
+
+    /* whatsapp floating btn style (inline with design) */
+    .wa-btn {
+      display: inline-block;
+      margin: 20px auto 40px;
+      background: #d4af37 ;
+      padding: 14px 36px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      box-shadow: 0 8px 14px rgba(37, 211, 102, 0.3);
+    }
+
+    .wa-btn:hover {
+      background: #20b859;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+
+    footer {
+      background: #1f1f1f;
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 40px;
+    }
+    .whatsapps{
+       background-color: #d4af37;
+       color: #d4af37;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    @media(max-width: 768px){
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      nav a {
+        margin: 0 15px;
+      }
+      .hero h2 {
+        font-size: 32px;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    /* additional touch: textbook pics via unsplash & reliable fallback */
+    .card img {
+      background: #dbd3c0; /* soft fallback */
+    }
+  </style>
+</head>
+<script>
+  // OPEN LOGIN MODAL
+function openLogin() {
+  document.getElementById("loginModal").style.display = "flex";
+}
+
+// CLOSE LOGIN MODAL
+function closeLogin() {
+  document.getElementById("loginModal").style.display = "none";
+}
+
+// LOGIN FUNCTION
+function login() {
+  var user = document.getElementById("username").value;
+  var pass = document.getElementById("password").value;
+
+  // SIMPLE DEMO LOGIN (you can change this)
+  if (user === "admin" && pass === "1234") {
+
+    localStorage.setItem("loggedInUser", user);
+
+    document.getElementById("userArea").innerHTML =
+      "Welcome, " + user +
+      " <button onclick='logout()' style='margin-left:10px;'>Logout</button>";
+
+    closeLogin();
+  } else {
+    alert("Invalid username or password");
+  }
+}
+
+// LOGOUT
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  document.getElementById("userArea").innerHTML = "";
+}
+  function openMenu()
+   {
+    document.getElementById("sideMenu").style.right = "0";
+  }
+  function openMenu() {
+    document.getElementById("sideMenu").style.right = "0";
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.right = "-300px";
+  }
+
+  function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    var title = document.getElementById("bookTitle").value;
+    var category = document.getElementById("category").value;
+    var price = document.getElementById("price").value;
+    var condition = document.getElementById("condition").value;
+    var description = document.getElementById("description").value;
+
+    var message = `Hello COOU Book Store,
+I want to sell a book:
+
+📚 Title: ${title}
+📂 Category: ${category}
+💰 Price: ₦${price}
+📌 Condition: ${condition}
+📝 Description: ${description}`;
+
+    var url = "https://wa.me/2349078878179?text=" + encodeURIComponent(message);
+    window.open(url, '_blank');
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.right = "-300px";
+  }
+  // KEEP USER LOGGED IN
+window.onload = function() {
+  var savedUser = localStorage.getItem("loggedInUser");
+
+  if (savedUser) {
+    document.getElementById("userArea").innerHTML =
+      "welcome, " + savedUser +
+      " <button onclick='logout()' style='margin-left:10px;'>Logout</button>";
+  }
+};
+</script>
+<body>
+
+<header>
+  <button onclick="openLogin()" class="btn" style="margin-left:20px;">
+  Login
+</button>
+
+<span id="userArea" style="margin-left:15px;"></span>
+  <!-- Menu Button -->
+<button class="menu-toggle" onclick="openMenu()">☰</button>
+  <h1>COOU/Uli Buy to sell book store</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+<!-- Side Menu -->
+<div id="sideMenu" class="side-menu">
+  <button class="close-btn" onclick="closeMenu()">×</button>
+  <h2>Campus Menu</h2>
+  <a href="#shop" class="side-link">📚 Buy Books</a>
+  <a href="https://wa.me/2349078878179?text=Hello%20I%20want%20to%20sell%20my%20book"
+     target="_blank"
+     class="side-link">💰 Sell Books</a>
+</div>
+<!-- hero with textbook/study related image (already unsplash textbook pile) -->
+<section class="hero">
+  <div>
+    <h2>CAMPUS SHELF</h2>
+    <p>⏳ buy smart, sell smart, study smart</p>
+    <a href="#shop" class="btn">📚 Shop Now</a>
+  </div>
+</section>
+
+<!-- product section with updated textbook urls / pics as requested -->
+<section class="products" id="shop">
+  <h2>📖 Featured textbooks & past questions</h2>
+  <div class="product-grid">
+
+    <!-- CARD 1 · COOU Past Question (with direct textbook image) -->
+    <div class="card">
+      <img src="data:image/jpeg;base64,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" 
+           alt="COOU past question book">
+      <h3>COOU Past Q&A</h3>
+      <span class="stock">📦 +500 in stock</span>
+      <p class="price">₦6,000</p>
+      <a href="https://paystack.com" class="btn" target="_blank">Buy Now</a>
+    </div>
+
+    <!-- CARD 2 · Textbook (modern textbook stack) -->
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=2070&auto=format&fit=crop" 
+           alt="stack of textbooks">
+      <h3>Textbooks (various)</h3>
+      <span class="stock">📦 +500 in stock</span>
+      <p class="price">₦4,000</p>
+      <a href="https://paystack.com" class="btn" target="_blank">Buy Now</a>
+    </div>
+
+    <!-- CARD 3 · Past Questions (fresh image: past papers / study) -->
+    <div class="card">
+      <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/20/3946402/1.jpg?2148"  
+           alt="past questions and notes">
+      <h3>Past Question's compilation</h3>
+      <span class="stock">📦 +500 in stock</span>
+      <p class="price">₦5,000</p>
+      <a href="https://paystack.com" class="btn" target="_blank">Buy Now</a>
+    </div>
+
+    <!-- BONUS CARD: extra textbook image to enrich the shelf (fulfills "add urls pics of textbooks") -->
+    <div class="card">
+      <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS-e9ro_OZiqLSApr4_LqUqHK7ojesqaEtbyq8Z-uGXMduJXxScoUVIqD9c-lDfelIe3iPwCT-2PL2pi3omrhRhs9cHmO8OMDhuorQ&usqp=CAc" 
+           alt="open textbook">
+      <h3>Engineering textbooks</h3>
+      <span class="stock">📦 +320 in stock</span>
+      <p class="price">₦5,500</p>
+      <a href="https://paystack.com" class="btn" target="_blank">Buy Now</a>
+    </div>
+
+    <!-- CARD 5: more textbook image (law/medicine vibe) -->
+    <div class="card">
+      <img src="https://c8.alamy.com/comp/EXX96F/medical-textbooks-clipping-path-included-EXX96F.jpg" 
+           alt="old textbooks">
+      <h3>Medical & Law texts</h3>
+      <span class="stock">📦 +210 in stock</span>
+      <p class="price">₦7,200</p>
+      <a href="https://paystack.com" class="btn" target="_blank">Buy Now</a>
+    </div>
+
+    <!-- CARD 6: another textbook variety -->
+    <div class="card">
+      <img src="data:image/jpeg;base64,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" 
+           alt="library books">
+      <h3>Literature & arts</h3>
+      <span class="stock">📦 +150 in stock</span>
+      <p class="price">₦3,800</p>
+      <a href="https://paystack.com" class="btn" target="_blank">Buy Now</a>
+    </div>
+
+  </div> <!-- end product grid -->
+
+  <!-- WhatsApp button styled and placed exactly after product grid, as requested -->
+  <div class="footer-note">
+    <a href="https://wa.me/2349078878179?text=Hello%20COOU%20book%20store%2C%20I%27m%20interested%20in%20a%20textbook" 
+       class="btn wa-btn" target="_blank">
+       💬 Chat us on WhatsApp
+    </a>
+    <!-- I corrected the phone number format: +234... (original had 09078882179, now with intl code) but kept the visual same. if you prefer 09078882179 just change in href -->
+    <p style="margin-top: 10px; color: #4a4a4a;"><small>instant replies · 24/7</small></p>
+  </div>
+</section>
+
+<!-- additional contact / footer -->
+<footer>
+  <p>© COOU/Uli Campus shelf — always available, smart study.</p>
+  <p style="margin-top: 8px; font-weight: 300;">📍 beside new library, Uli campus</p>
+</footer>
+
+<!-- subtle note: all textbook images from unsplash (high quality, royalty-free) and one past question CDN fallback if needed, but unsplash is reliable -->
+<!-- LOGIN MODAL -->
+<div id="loginModal" style="
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+">
+
+  <div style="
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    width:320px;
+    text-align:center;
+    position:relative;
+  ">
+    <h2 style="margin-bottom:20px;">Login</h2>
+
+    <input type="text" id="username" placeholder="Username"
+      style="width:100%;padding:10px;margin-bottom:15px;border-radius:8px;border:1px solid #ccc;">
+
+    <input type="password" id="password" placeholder="Password"
+      style="width:100%;padding:10px;margin-bottom:20px;border-radius:8px;border:1px solid #ccc;">
+
+    <button onclick="login()" class="btn" style="width:100%;">Login</button>
+
+    <button onclick="closeLogin()" style="
+      position:absolute;
+      top:10px;
+      right:15px;
+      background:none;
+      border:none;
+      font-size:20px;
+      cursor:pointer;
+    ">×</button>
+  </div>
+</div>
+</body>
